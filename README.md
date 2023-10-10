@@ -2,7 +2,7 @@
 
 ## Opciones para descargar el proyecto:
 -  Puede descargar el proyecto en formato Zip.
--  Git clone desde la consola de comandos de git con la url https://github.com/Luiso-o/ApiRestCrud-SkinsVideojuego.git
+-  clonando desde la consola de comandos de git con el comando git clone https://github.com/Luiso-o/ApiRestCrud-SkinsVideojuego.git
 
 ## Importante antes de usar la API:
 
@@ -16,4 +16,4 @@
 - Server localhost : 27017
 
 ## Estructura primigenia
-![Estructura](https://github.com/Luiso-o/ApiRestCrud-SkinsVideojuego/assets/128043647/83ab4d0f-d9f3-4800-b722-633c4e6318e0)
+![Estructura.png](images/estructura.png)
