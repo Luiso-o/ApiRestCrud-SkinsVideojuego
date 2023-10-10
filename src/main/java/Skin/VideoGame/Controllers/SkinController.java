@@ -49,4 +49,6 @@ public class SkinController {
         return ResponseEntity.status(HttpStatus.CREATED).body(newSkin);
     }
 
+
+
 }
