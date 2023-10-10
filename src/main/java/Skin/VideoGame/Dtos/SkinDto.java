@@ -22,4 +22,6 @@ public class SkinDto {
     private TipoSkin tipos;
     @JsonProperty(index = 3)
     private ColorSkin color;
+    @JsonProperty(index = 4)
+    private Double precio;
 }
