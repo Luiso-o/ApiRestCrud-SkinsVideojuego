@@ -25,12 +25,18 @@ datos.
 
 Requisitos Técnicos y Evaluación 
 
-− La aplicación cumple con los requisitos funcionales especificados. 
+− La aplicación cumple con los requisitos funcionales especificados.
+
 − El código sigue buenas prácticas de programación. 
+
 − El proyecto sigue un patrón estructural. 
+
 − Las funciones tienen una única responsabilidad. 
+
 − El código es escalable y reutilizable. 
+
 − El código está optimizado y su rendimiento es eficiente. 
+
 − Proporcionar una documentación detallada en el Readme del repositorio.
 
 ![Estructura](https://github.com/Luiso-o/ApiRestCrud-SkinsVideojuego/assets/128043647/83ab4d0f-d9f3-4800-b722-633c4e6318e0)
