@@ -4,7 +4,7 @@
 -  Puede descargar el proyecto en formato Zip.
 -  Git clone desde la consola de comandos de git con la url https://github.com/Luiso-o/ApiRestCrud-SkinsVideojuego.git
 
-IMPORTANTE ANTES DE ARRANCAR LA API:
+## Importante antes de usar la API:
 
 ## Versiones necesarias:
 - Gradle 8.1.1
