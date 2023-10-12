@@ -13,7 +13,7 @@
 - SpringFramework.boot 3.1.4
 
 ## Importante:
-- Es posible que si trabajas con Lombok tengas problemas con la nueva version, no es compatible
+- Es posible que si trabajas con Intellij Idea tengas problemas con la nueva versión, no es compatible
   con la version actual de Lombok, trabaja son un ide diferente o con una version anterior a la
   nueva de Intellij.
 
