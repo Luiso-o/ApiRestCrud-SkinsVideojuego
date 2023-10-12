@@ -4,8 +4,12 @@ import Skin.VideoGame.Dtos.SkinDto;
 import Skin.VideoGame.documents.SkinDocument;
 import Skin.VideoGame.enumeraciones.ColorSkin;
 import Skin.VideoGame.enumeraciones.TipoSkin;
+import Skin.VideoGame.exceptions.BadUUIDException;
+import Skin.VideoGame.exceptions.DocumentNotFoundByIdException;
 import Skin.VideoGame.helper.Converter;
 import Skin.VideoGame.repositories.SkinRepository;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,6 +18,7 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class SkinServiceImpl implements SkinService {
+    private static final Logger log = LoggerFactory.getLogger(SkinServiceImpl.class);
     @Autowired
     private SkinRepository skinRepository;
     @Autowired
@@ -28,7 +33,36 @@ public class SkinServiceImpl implements SkinService {
                 .color(colorSkin)
                 .precio(precio)
                 .build());
+      log.info("Skin creada correctamente");
       return converter.toSkinDto(savedSkinDocument);
+    }
+
+    @Override
+    public void deleteSkin(String id) throws BadUUIDException {
+        converter.validateUUID(id);
+        SkinDocument skin = findSkinById(id);
+        skinRepository.delete(skin);
+        log.info(skin + " Eliminada con éxito");
+    }
+
+    @Override
+    public SkinDto updateSkin(SkinDocument existingSkin) throws BadUUIDException {
+        converter.validateUUID(existingSkin.getIdSkin());
+        SkinDocument skinToUpdate = findSkinById(existingSkin.getIdSkin());
+
+        skinToUpdate.setNombre(existingSkin.getNombre());
+        skinToUpdate.setTipos(existingSkin.getTipos());
+        skinToUpdate.setColor(existingSkin.getColor());
+        skinToUpdate.setPrecio(existingSkin.getPrecio());
+
+        skinRepository.save(skinToUpdate);
+        log.info("Skin actualizada correctamente");
+        return converter.toSkinDto(skinToUpdate);
+    }
+
+    private SkinDocument findSkinById(String id){
+        return skinRepository.findById(id)
+                .orElseThrow(() -> new DocumentNotFoundByIdException(id + " No se encontró o no pertenece a ningún Skin de la base de datos."));
     }
 
 }

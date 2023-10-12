@@ -4,6 +4,7 @@ import Skin.VideoGame.Dtos.SkinDto;
 import Skin.VideoGame.documents.SkinDocument;
 import Skin.VideoGame.enumeraciones.ColorSkin;
 import Skin.VideoGame.enumeraciones.TipoSkin;
+import Skin.VideoGame.exceptions.BadUUIDException;
 import org.junit.jupiter.api.*;
 import org.springframework.boot.test.context.SpringBootTest;
 
@@ -48,4 +49,28 @@ public class ConverterTest {
             throw new AssertionError("La cadena generada no es un UUID válido.");
         }
     }
+
+    @Test
+    public void testValidUUIDFormat() {
+        try {
+            converter.validateUUID("550e8400-e29b-41d4-a716-446655440000");
+        } catch (BadUUIDException e) {
+            fail("Se esperaba que el UUID fuera válido, pero se lanzó una excepción: " + e.getMessage());
+        }
+    }
+
+    @Test
+    public void testInvalidUUIDFormat() {
+        try {
+           converter.validateUUID("invalid-uuid-format");
+            // Si no se lanza una excepción, el test falla
+            fail("Se esperaba una excepción BadUUIDException para un formato de UUID no válido.");
+        } catch (BadUUIDException e) {
+            // Si se lanza una excepción, el test pasa
+            assertEquals("Invalid ID format. Please indicate the correct format.", e.getMessage());
+        }
+    }
+
+
+
 }
