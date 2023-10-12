@@ -1,8 +1,10 @@
 package Skin.VideoGame.Controllers;
 
 import Skin.VideoGame.Dtos.SkinDto;
+import Skin.VideoGame.documents.SkinDocument;
 import Skin.VideoGame.enumeraciones.ColorSkin;
 import Skin.VideoGame.enumeraciones.TipoSkin;
+import Skin.VideoGame.exceptions.BadUUIDException;
 import Skin.VideoGame.service.SkinServiceImpl;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.*;
@@ -48,5 +50,37 @@ public class SkinController {
         log.info("Skin creada con éxito");
         return ResponseEntity.status(HttpStatus.CREATED).body(newSkin);
     }
+
+    @Operation(summary = "Delete a skin of the database")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Skin deleted"),
+            @ApiResponse(responseCode = "500", description = "Internal error")
+    })
+    @DeleteMapping(value = "delete")
+    public ResponseEntity<String>deleteSkin(@RequestParam String idSkin) throws Exception{
+        skinService.deleteSkin(idSkin);
+        return ResponseEntity.status(HttpStatus.OK).body("Skin deleted");
+    }
+
+    @Operation(summary = "Update a skin using for this id")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Update successful"),
+            @ApiResponse(responseCode = "500", description = "Internal error")
+    })
+    @PostMapping(value = "update")
+    public ResponseEntity<Map<String,Object>>updateSkinFromId(
+            @RequestParam String id,
+            @RequestParam (required = false, defaultValue = "Mi nuevo implemento") String nombre,
+            @RequestParam TipoSkin tipoSkin,
+            @RequestParam ColorSkin colorSkin,
+            @RequestParam double precio
+    ) throws Exception {
+        SkinDto updateSkin = skinService.updateSkin(new SkinDocument(id,nombre,tipoSkin,colorSkin,precio));
+        Map<String,Object> response = new HashMap<>();
+        response.put("Nueva skin creada", updateSkin);
+        log.info("Skin actualizado con éxito");
+        return ResponseEntity.status(HttpStatus.OK).body(response);
+    }
+
 
 }
