@@ -16,6 +16,8 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Set;
+
 /**
  * @author Luis
  */
@@ -81,5 +83,14 @@ public class SkinController {
         return ResponseEntity.status(HttpStatus.OK).body(response);
     }
 
+    @Operation(summary = "Select all Skins of the database")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "List of skins"),
+    })
+    @DeleteMapping(value = "getAll")
+    public ResponseEntity<Set<SkinDto>>getAllSkins(){
+        Set<SkinDto> mySkins = skinService.findListSkins();
+        return ResponseEntity.status(HttpStatus.OK).body(mySkins);
+    }
 
 }

@@ -13,6 +13,9 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.*;
+import java.util.stream.Collectors;
+
 /**
  * @author Luis
  */
@@ -60,7 +63,18 @@ public class SkinServiceImpl implements SkinService {
         return converter.toSkinDto(skinToUpdate);
     }
 
-    private SkinDocument findSkinById(String id){
+    @Override
+    public Set<SkinDto> findListSkins() {
+        Set<SkinDocument> mySkins = new HashSet<>(skinRepository.findAll());
+        if (mySkins.isEmpty()) {
+           log.info("La lista de skins está vacía.");
+            return Collections.emptySet();
+        }
+        return mySkins.stream().map(skinDocument -> converter.toSkinDto(skinDocument))
+                .collect(Collectors.toSet());
+    }
+
+    public SkinDocument findSkinById(String id){
         return skinRepository.findById(id)
                 .orElseThrow(() -> new DocumentNotFoundByIdException(id + " No se encontró o no pertenece a ningún Skin de la base de datos."));
     }
