@@ -4,7 +4,6 @@ import Skin.VideoGame.Dtos.SkinDto;
 import Skin.VideoGame.documents.SkinDocument;
 import Skin.VideoGame.enumeraciones.ColorSkin;
 import Skin.VideoGame.enumeraciones.TipoSkin;
-import Skin.VideoGame.exceptions.BadUUIDException;
 import Skin.VideoGame.service.SkinServiceImpl;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.*;
@@ -17,6 +16,8 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Set;
+
 /**
  * @author Luis
  */
@@ -82,5 +83,14 @@ public class SkinController {
         return ResponseEntity.status(HttpStatus.OK).body(response);
     }
 
+    @Operation(summary = "Select all Skins of the database")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "List of skins"),
+    })
+    @DeleteMapping(value = "getAll")
+    public ResponseEntity<Set<SkinDto>>getAllSkins(){
+        Set<SkinDto> mySkins = skinService.findListSkins();
+        return ResponseEntity.status(HttpStatus.OK).body(mySkins);
+    }
 
 }
