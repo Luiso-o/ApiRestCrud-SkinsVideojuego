@@ -3,7 +3,7 @@ package Skin.VideoGame.Controllers;
 import Skin.VideoGame.Dtos.SkinDto;
 import Skin.VideoGame.enumeraciones.ColorSkin;
 import Skin.VideoGame.enumeraciones.TipoSkin;
-import Skin.VideoGame.service.SkinService;
+import Skin.VideoGame.service.SkinServiceImpl;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.*;
 import org.slf4j.Logger;
@@ -23,7 +23,7 @@ import java.util.Map;
 public class SkinController {
     private static final Logger log = LoggerFactory.getLogger(SkinController.class);
     @Autowired
-    private SkinService skinService;
+    private SkinServiceImpl skinService;
 
     @GetMapping(value = "/test")
     public String test() {
@@ -48,7 +48,5 @@ public class SkinController {
         log.info("Skin creada con éxito");
         return ResponseEntity.status(HttpStatus.CREATED).body(newSkin);
     }
-
-
 
 }

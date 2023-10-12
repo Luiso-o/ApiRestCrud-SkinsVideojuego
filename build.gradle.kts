@@ -38,8 +38,14 @@ dependencies {
 	implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:2.1.0")
 	implementation("io.swagger:swagger-annotations:1.6.11")
 
-	//JUnit
+	//Test
 	testImplementation("junit:junit:4.13.2")
+	testImplementation("org.mockito:mockito-junit-jupiter:5.5.0")
+
+	//Jacson
+	implementation("com.fasterxml.jackson.core:jackson-databind:2.15.2")
+	implementation("com.fasterxml.jackson.core:jackson-core:2.15.2")
+	implementation("com.fasterxml.jackson.core:jackson-annotations:2.15.2")
 
 }
 
