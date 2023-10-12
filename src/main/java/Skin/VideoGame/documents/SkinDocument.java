@@ -7,8 +7,6 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 import org.springframework.data.mongodb.core.mapping.MongoId;
 
-import java.util.UUID;
-
 /**
  * @author Luis
  */
@@ -18,7 +16,6 @@ import java.util.UUID;
 @AllArgsConstructor
 @Document(collection = "Skins")
 public class SkinDocument {
-
     @MongoId
     @Field(name = "idSkin")
     private String idSkin;

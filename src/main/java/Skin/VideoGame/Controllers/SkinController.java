@@ -4,7 +4,6 @@ import Skin.VideoGame.Dtos.SkinDto;
 import Skin.VideoGame.documents.SkinDocument;
 import Skin.VideoGame.enumeraciones.ColorSkin;
 import Skin.VideoGame.enumeraciones.TipoSkin;
-import Skin.VideoGame.exceptions.BadUUIDException;
 import Skin.VideoGame.service.SkinServiceImpl;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.*;

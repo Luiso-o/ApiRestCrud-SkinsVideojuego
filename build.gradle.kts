@@ -29,8 +29,8 @@ dependencies {
 
 	implementation("io.projectreactor:reactor-core:3.5.9")
 
-	compileOnly("org.projectlombok:lombok:1.18.26")
-	annotationProcessor("org.projectlombok:lombok:1.18.26")
+	compileOnly("org.projectlombok:lombok:1.18.28")
+	annotationProcessor("org.projectlombok:lombok:1.18.28")
 
 	implementation("org.springframework.boot:spring-boot-starter-data-mongodb:3.0.7")
 
