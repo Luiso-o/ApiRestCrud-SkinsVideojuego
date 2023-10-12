@@ -12,6 +12,13 @@
 - Kotlin 1.8.10
 - SpringFramework.boot 3.1.4
 
+## Importante:
+- Es posible que si trabajas con Intellij Idea tengas problemas con la nueva versión, no es compatible
+  con la version actual de Lombok, trabaja son un ide diferente o con una version anterior a la
+  nueva de Intellij.
+
+- Si quieres usar la versión actual te recomiendo descargar el pluguin de Lombok https://github.com/mplushnikov/lombok-intellij-plugin 
+
 ## Base de datos mongoDB
 - Server localhost : 27017
 
