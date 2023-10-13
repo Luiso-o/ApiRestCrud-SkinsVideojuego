@@ -16,6 +16,9 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+
 @SpringBootTest
 @AutoConfigureMockMvc
 @ActiveProfiles("test")
@@ -41,7 +44,7 @@ class SkinControllerTest {
                         .param("colorSkin", String.valueOf(ColorSkin.VERDE))
                         .param("precio", String.valueOf(34.54))
                         .contentType(MediaType.APPLICATION_JSON))
-                .andExpect(MockMvcResultMatchers.status().isCreated());
+                .andExpect(status().isCreated());
     }
 
     @Test
@@ -57,8 +60,8 @@ class SkinControllerTest {
                         .param("idSkin", idToDelete)
                         .contentType(MediaType.APPLICATION_JSON)
                         .accept(MediaType.APPLICATION_JSON))
-                .andExpect(MockMvcResultMatchers.status().isOk())
-                .andExpect(MockMvcResultMatchers.content().string("Skin deleted"));
+                .andExpect(status().isOk())
+                .andExpect(content().string("Skin deleted"));
     }
 
     @Test
@@ -78,9 +81,21 @@ class SkinControllerTest {
                         .param("colorSkin", colorSkin.toString())
                         .param("precio", String.valueOf(precio))
                         .contentType(MediaType.APPLICATION_JSON))
-                .andExpect(MockMvcResultMatchers.status().isOk())
+                .andExpect(status().isOk())
                 .andExpect(MockMvcResultMatchers.jsonPath("$.['Nueva skin creada'].nombre").value(nombre));
 
+    }
+
+    @Test
+    public void testGetAllSkinsEndpoint() throws Exception {
+        mockMvc.perform(MockMvcRequestBuilders.get("/skins/getAll"))
+                .andExpect(status().isOk())
+                .andReturn();
+
+        mockMvc.perform(MockMvcRequestBuilders.get("/skins/getAll"))
+                .andExpect(status().isOk())
+                .andExpect(content().contentType("application/json"))
+                .andExpect(content().json("[]"));
     }
 
 }

@@ -15,8 +15,12 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
+import static org.junit.Assert.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
@@ -95,6 +99,25 @@ public class SkinServiceImplTest {
         SkinDto result = skinService.updateSkin(updatedSkin);
         assertEquals("Vuelo de halcón", result.getNombre());
         verify(skinRepository).save(updatedSkin);
+    }
+
+    @Test
+    public void testFindListSkins() {
+        List<SkinDocument> skinDocuments = new ArrayList<>();
+        skinDocuments.add(new SkinDocument());
+
+        when(skinRepository.findAll()).thenReturn(skinDocuments);
+        SkinDto simulatedDto = new SkinDto();
+        when(converter.toSkinDto(any(SkinDocument.class))).thenReturn(simulatedDto);
+
+        Set<SkinDto> result = skinService.findListSkins();
+
+        verify(skinRepository, times(1)).findAll();
+        verify(converter, times(skinDocuments.size())).toSkinDto(any(SkinDocument.class));
+
+        assertNotNull(result);
+        assertFalse(result.isEmpty());
+        assertTrue(result.contains(simulatedDto));
     }
 
 }
