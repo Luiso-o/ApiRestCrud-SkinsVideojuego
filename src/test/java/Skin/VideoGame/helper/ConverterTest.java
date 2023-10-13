@@ -31,7 +31,7 @@ public class ConverterTest {
         skinDocument.setColor(ColorSkin.AZUL);
         skinDocument.setPrecio(19.99);
 
-        SkinDto skinDto = converter.toSkinDto(skinDocument);
+        SkinDto skinDto = converter.fromSkinDocumentToDto(skinDocument);
 
         assertEquals(skinDocument.getIdSkin(), skinDto.getIdSkin());
         assertEquals(skinDocument.getNombre(), skinDto.getNombre());

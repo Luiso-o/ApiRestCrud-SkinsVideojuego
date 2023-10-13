@@ -26,4 +26,4 @@
 ![Estructura.png](images/estructura.png)
 
 ## Testing microservicio Skin
-![testingSkin.png](images/testingSkin.png)
+![testingSkin.png](images/testing.png)

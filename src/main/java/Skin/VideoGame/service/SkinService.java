@@ -13,6 +13,6 @@ public interface SkinService {
     void deleteSkin(String id) throws BadUUIDException;
     SkinDto updateSkin(SkinDocument skinDocument) throws BadUUIDException;
     SkinDocument findSkinById(String id);
-   Set<SkinDto> findListSkins();
+    Set<SkinDto> findListSkins();
 
 }
