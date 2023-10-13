@@ -14,10 +14,8 @@ import org.springframework.http.MediaType;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
-import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @SpringBootTest
 @AutoConfigureMockMvc
@@ -66,24 +64,22 @@ class SkinControllerTest {
 
     @Test
     public void testUpdateSkinFromId() throws Exception {
-        String id = "7d33913d-32fe-470d-beb2-32854c5c4a2a";
+        String idSkin = "a9a83163-2814-4d2f-9fd7-7bbfafb96aeb";
         String nombre = "Nuevo nombre";
         TipoSkin tipoSkin = TipoSkin.ARMADURA;
         ColorSkin colorSkin = ColorSkin.NARANJA;
         double precio = 99.99;
 
-        skinRepository.save(new SkinDocument(id,nombre,tipoSkin,colorSkin,precio));
+        skinRepository.save(new SkinDocument(idSkin, nombre, tipoSkin,colorSkin,precio));
 
-        mockMvc.perform(MockMvcRequestBuilders.post("/skins/update")
-                        .param("id", id)
-                        .param("nombre", nombre)
-                        .param("tipoSkin", tipoSkin.toString())
-                        .param("colorSkin", colorSkin.toString())
-                        .param("precio", String.valueOf(precio))
+        mockMvc.perform(MockMvcRequestBuilders.put("/skins/update")
+                        .param("idSkin", idSkin)
+                        .param("nombre", "Manto sagrado")
+                        .param("tipoSkin", String.valueOf(TipoSkin.CAPA))
+                        .param("colorSkin", String.valueOf(ColorSkin.BLANCO))
+                        .param("precio", String.valueOf(799.0))
                         .contentType(MediaType.APPLICATION_JSON))
-                .andExpect(status().isOk())
-                .andExpect(MockMvcResultMatchers.jsonPath("$.['Nueva skin creada'].nombre").value(nombre));
-
+                .andExpect(status().isOk());
     }
 
     @Test

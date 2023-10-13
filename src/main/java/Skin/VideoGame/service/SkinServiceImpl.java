@@ -37,15 +37,15 @@ public class SkinServiceImpl implements SkinService {
                 .precio(precio)
                 .build());
       log.info("Skin creada correctamente");
-      return converter.toSkinDto(savedSkinDocument);
+      return converter.fromSkinDocumentToDto(savedSkinDocument);
     }
 
     @Override
     public void deleteSkin(String id) throws BadUUIDException {
         converter.validateUUID(id);
         SkinDocument skin = findSkinById(id);
-        skinRepository.delete(skin);
         log.info(skin + " Eliminada con éxito");
+        skinRepository.delete(skin);
     }
 
     @Override
@@ -60,7 +60,7 @@ public class SkinServiceImpl implements SkinService {
 
         skinRepository.save(skinToUpdate);
         log.info("Skin actualizada correctamente");
-        return converter.toSkinDto(skinToUpdate);
+        return converter.fromSkinDocumentToDto(skinToUpdate);
     }
 
     @Override
@@ -70,7 +70,7 @@ public class SkinServiceImpl implements SkinService {
            log.info("La lista de skins está vacía.");
             return Collections.emptySet();
         }
-        return mySkins.stream().map(skinDocument -> converter.toSkinDto(skinDocument))
+        return mySkins.stream().map(skinDocument -> converter.fromSkinDocumentToDto(skinDocument))
                 .collect(Collectors.toSet());
     }
 

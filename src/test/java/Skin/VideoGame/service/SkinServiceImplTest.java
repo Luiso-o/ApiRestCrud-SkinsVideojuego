@@ -51,12 +51,12 @@ public class SkinServiceImplTest {
         when(skinRepository.save(any(SkinDocument.class))).thenReturn(savedSkinDocument);
 
         SkinDto expectedSkinDto = new SkinDto();
-        when(converter.toSkinDto(savedSkinDocument)).thenReturn(expectedSkinDto);
+        when(converter.fromSkinDocumentToDto(savedSkinDocument)).thenReturn(expectedSkinDto);
 
         SkinDto result = skinService.createNewSkin(nombre, tipoSkin, colorSkin, precio);
 
         verify(skinRepository).save(any(SkinDocument.class));
-        verify(converter).toSkinDto(savedSkinDocument);
+        verify(converter).fromSkinDocumentToDto(savedSkinDocument);
 
         Assert.assertEquals(expectedSkinDto, result);
     }
@@ -81,14 +81,10 @@ public class SkinServiceImplTest {
     @Test
     public void testUpdateSkin() throws BadUUIDException {
         SkinDocument existingSkin = new SkinDocument("7d33913d-32fe-470d-beb2-32854c5c4a2a", "Roca ambulante", TipoSkin.ARMADURA, ColorSkin.NARANJA, 80.2);
-
         doNothing().when(converter).validateUUID(existingSkin.getIdSkin());
-
         when(skinRepository.findById(existingSkin.getIdSkin())).thenReturn(Optional.of(existingSkin));
-
         SkinDocument updatedSkin = new SkinDocument("7d33913d-32fe-470d-beb2-32854c5c4a2a", "Vuelo de halcón", TipoSkin.ALAS, ColorSkin.NEGRO, 700.0);
-
-        when(converter.toSkinDto(updatedSkin)).thenReturn(new SkinDto(
+        when(converter.fromSkinDocumentToDto(updatedSkin)).thenReturn(new SkinDto(
                 updatedSkin.getIdSkin(),
                 updatedSkin.getNombre(),
                 updatedSkin.getTipos(),
@@ -108,12 +104,12 @@ public class SkinServiceImplTest {
 
         when(skinRepository.findAll()).thenReturn(skinDocuments);
         SkinDto simulatedDto = new SkinDto();
-        when(converter.toSkinDto(any(SkinDocument.class))).thenReturn(simulatedDto);
+        when(converter.fromSkinDocumentToDto(any(SkinDocument.class))).thenReturn(simulatedDto);
 
         Set<SkinDto> result = skinService.findListSkins();
 
         verify(skinRepository, times(1)).findAll();
-        verify(converter, times(skinDocuments.size())).toSkinDto(any(SkinDocument.class));
+        verify(converter, times(skinDocuments.size())).fromSkinDocumentToDto(any(SkinDocument.class));
 
         assertNotNull(result);
         assertFalse(result.isEmpty());
