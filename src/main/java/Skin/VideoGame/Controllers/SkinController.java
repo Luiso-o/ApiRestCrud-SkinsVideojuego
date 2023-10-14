@@ -78,7 +78,7 @@ public class SkinController {
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "List of skins"),
     })
-    @GetMapping(value = "getAll")
+    @GetMapping(value = "avaible")
     public ResponseEntity<Set<SkinDto>>getAllSkins(){
         Set<SkinDto> mySkins = skinService.findListSkins();
         return ResponseEntity.status(HttpStatus.OK).body(mySkins);

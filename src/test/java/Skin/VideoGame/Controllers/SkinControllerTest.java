@@ -84,11 +84,11 @@ class SkinControllerTest {
 
     @Test
     public void testGetAllSkinsEndpoint() throws Exception {
-        mockMvc.perform(MockMvcRequestBuilders.get("/skins/getAll"))
+        mockMvc.perform(MockMvcRequestBuilders.get("/skins/avaible"))
                 .andExpect(status().isOk())
                 .andReturn();
 
-        mockMvc.perform(MockMvcRequestBuilders.get("/skins/getAll"))
+        mockMvc.perform(MockMvcRequestBuilders.get("/skins/avaible"))
                 .andExpect(status().isOk())
                 .andExpect(content().contentType("application/json"))
                 .andExpect(content().json("[]"));

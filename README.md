@@ -17,7 +17,8 @@
   con la version actual de Lombok, trabaja son un ide diferente o con una version anterior a la
   nueva de Intellij.
 
-- Si quieres usar la versión actual te recomiendo descargar el pluguin de Lombok https://github.com/mplushnikov/lombok-intellij-plugin 
+- Si quieres usar la versión actual de Intellij te recomiendo ver este repositorio donde te explica como
+descargar el pluguin de Lombok https://github.com/mplushnikov/lombok-intellij-plugin 
 
 ## Base de datos mongoDB última version disponible
 - Server localhost : 27017

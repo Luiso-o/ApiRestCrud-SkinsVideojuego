@@ -53,7 +53,7 @@ public class PlayerController {
             @ApiResponse(responseCode = "200", description = "Update successful"),
             @ApiResponse(responseCode = "500", description = "Internal error")
     })
-    @PostMapping(value = "update")
+    @PutMapping(value = "update")
     public ResponseEntity<Map<String,Object>>updatePlayerFromId(
             @RequestParam String idJugador,
             @RequestParam (required = false, defaultValue = "Nuevo Jugador") String nombre,
