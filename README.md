@@ -19,11 +19,5 @@
 
 - Si quieres usar la versión actual te recomiendo descargar el pluguin de Lombok https://github.com/mplushnikov/lombok-intellij-plugin 
 
-## Base de datos mongoDB
+## Base de datos mongoDB última version disponible
 - Server localhost : 27017
-
-## Estructura primigenia
-![Estructura.png](images/estructura.png)
-
-## Testing microservicio Skin
-![testingSkin.png](images/testing.png)
