@@ -41,11 +41,19 @@ public class Converter {
         return newUuid.toString();
     }
 
-    public void validateUUID(String id) throws BadUUIDException {
+    public void validateSkinUUID(String id) throws BadUUIDException {
         boolean validUUID = !StringUtils.isEmpty(id) && UUID_FORM.matcher(id).matches();
         if (!validUUID) {
-            log.warn("Invalid ID format: {}", id);
-            throw new BadUUIDException("Invalid ID format. Please indicate the correct format.");
+            log.warn("Invalid ID for the Skin format: {}", id);
+            throw new BadUUIDException("Invalid ID for the Skin format. Please indicate the correct format.");
+        }
+    }
+
+    public void validatePLayerUUID(String id) throws BadUUIDException {
+        boolean validUUID = !StringUtils.isEmpty(id) && UUID_FORM.matcher(id).matches();
+        if (!validUUID) {
+            log.warn("Invalid ID for the Player format: {}", id);
+            throw new BadUUIDException("Invalid ID for the Player format. Please indicate the correct format.");
         }
     }
 

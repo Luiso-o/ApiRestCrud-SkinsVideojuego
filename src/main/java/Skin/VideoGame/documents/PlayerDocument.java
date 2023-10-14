@@ -26,6 +26,5 @@ public class PlayerDocument {
     @Field(name = "Level")
     private Level level;
     @Field(name = "Skins")
-    @Transient
     private Set<SkinDocument> mySkins;
 }

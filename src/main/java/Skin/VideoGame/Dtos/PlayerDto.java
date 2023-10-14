@@ -1,9 +1,12 @@
 package Skin.VideoGame.Dtos;
 
+import Skin.VideoGame.documents.SkinDocument;
 import Skin.VideoGame.enumeraciones.Level;
 import Skin.VideoGame.enumeraciones.PlayerType;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;
+
+import java.util.Set;
 
 @AllArgsConstructor
 @NoArgsConstructor
