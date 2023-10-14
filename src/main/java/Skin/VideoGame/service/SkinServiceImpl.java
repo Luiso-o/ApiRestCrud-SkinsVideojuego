@@ -42,7 +42,7 @@ public class SkinServiceImpl implements SkinService {
 
     @Override
     public void deleteSkin(String id) throws BadUUIDException {
-        converter.validateUUID(id);
+        converter.validateSkinUUID(id);
         SkinDocument skin = findSkinById(id);
         log.info(skin + " Eliminada con éxito");
         skinRepository.delete(skin);
@@ -50,7 +50,7 @@ public class SkinServiceImpl implements SkinService {
 
     @Override
     public SkinDto updateSkin(SkinDocument existingSkin) throws BadUUIDException {
-        converter.validateUUID(existingSkin.getIdSkin());
+        converter.validateSkinUUID(existingSkin.getIdSkin());
         SkinDocument skinToUpdate = findSkinById(existingSkin.getIdSkin());
 
         skinToUpdate.setNombre(existingSkin.getNombre());

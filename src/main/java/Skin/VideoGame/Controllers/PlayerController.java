@@ -1,9 +1,11 @@
 package Skin.VideoGame.Controllers;
 
 import Skin.VideoGame.Dtos.PlayerDto;
+import Skin.VideoGame.Dtos.SkinDto;
 import Skin.VideoGame.enumeraciones.Level;
 import Skin.VideoGame.enumeraciones.PlayerType;
-import Skin.VideoGame.service.PlayerService;
+import Skin.VideoGame.exceptions.BadUUIDException;
+import Skin.VideoGame.service.PlayerServiceImpl;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
@@ -20,7 +22,7 @@ import java.util.Set;
 @RequestMapping(value = "players")
 public class PlayerController {
     @Autowired
-    private PlayerService pLayerService;
+    private PlayerServiceImpl playerService;
 
     @Operation(summary = "Create a new Player in the game")
     @ApiResponses(value = {
@@ -31,7 +33,7 @@ public class PlayerController {
             @RequestParam(required = false, defaultValue = "Nuevo Jugador") String nombre,
             @RequestParam PlayerType playerType
             ){
-        PlayerDto playerDto = pLayerService.createNewPlayer(nombre,playerType);
+        PlayerDto playerDto = playerService.createNewPlayer(nombre,playerType);
         Map<String,Object> newSkin = new HashMap<>();
         newSkin.put("Nuevo jugador Listo para la aventura! ",playerDto);
         return ResponseEntity.status(HttpStatus.CREATED).body(newSkin);
@@ -44,7 +46,7 @@ public class PlayerController {
     })
     @DeleteMapping(value = "delete")
     public ResponseEntity<String>deletePlayer(@RequestParam String idPLayer) throws Exception{
-        pLayerService.deletePlayer(idPLayer);
+        playerService.deletePlayer(idPLayer);
         return ResponseEntity.status(HttpStatus.OK).body("Player deleted successfully.");
     }
 
@@ -60,7 +62,7 @@ public class PlayerController {
             @RequestParam PlayerType playerType,
             @RequestParam Level level
     ) throws Exception {
-        PlayerDto player = pLayerService.updatePLayer(idJugador,nombre,playerType,level);
+        PlayerDto player = playerService.updatePLayer(idJugador,nombre,playerType,level);
         Map<String,Object> response = new HashMap<>();
         response.put("Jugador modificado exitosamente", player);
         return ResponseEntity.status(HttpStatus.OK).body(response);
@@ -72,7 +74,7 @@ public class PlayerController {
     })
     @GetMapping(value = "getAll")
     public ResponseEntity<Set<PlayerDto>>getAllPlayers(){
-        Set<PlayerDto> myPlayers = pLayerService.getAllPlayers();
+        Set<PlayerDto> myPlayers = playerService.getAllPlayers();
         return ResponseEntity.status(HttpStatus.OK).body(myPlayers);
     }
 

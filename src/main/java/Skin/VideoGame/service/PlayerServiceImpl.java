@@ -1,6 +1,7 @@
 package Skin.VideoGame.service;
 
 import Skin.VideoGame.Dtos.PlayerDto;
+import Skin.VideoGame.Dtos.SkinDto;
 import Skin.VideoGame.documents.PlayerDocument;
 import Skin.VideoGame.documents.SkinDocument;
 import Skin.VideoGame.enumeraciones.Level;
@@ -25,6 +26,8 @@ public class PlayerServiceImpl implements PlayerService {
     @Autowired
     private PlayerRepository playerRepository;
     @Autowired
+    private SkinService skinService;
+    @Autowired
     private Converter converter;
 
     public PlayerDto createNewPlayer(String nombre, PlayerType type) {
@@ -40,14 +43,14 @@ public class PlayerServiceImpl implements PlayerService {
     }
 
     public void deletePlayer(String idPlayer) throws BadUUIDException {
-    converter.validateUUID(idPlayer);
+    converter.validatePLayerUUID(idPlayer);
     PlayerDocument playerDocument = findPlayerById(idPlayer);
     log.info(playerDocument + " eliminado correctamente");
     playerRepository.delete(playerDocument);
     }
 
     public PlayerDto updatePLayer(String id, String nombre, PlayerType tipo, Level level) throws BadUUIDException {
-        converter.validateUUID(id);
+        converter.validatePLayerUUID(id);
         PlayerDocument playerToUpdate = findPlayerById(id);
 
         playerToUpdate.setNombre(nombre);
@@ -74,4 +77,6 @@ public class PlayerServiceImpl implements PlayerService {
                 .orElseThrow(() -> new DocumentNotFoundByIdException(idPlayer + " No se encontró o no pertenece a ningún jugador de la base de datos."));
 
     }
+
+
 }
