@@ -62,15 +62,15 @@ class PlayerControllerTest {
     @Test
     public void testUpdatePlayerFromId() throws Exception {
         String id = "7d33913d-32fe-470d-beb2-32854c5c4a2a";
-        String nombre = "Nuevo nombre";
+        String nombre = "Pedro";
         PlayerType playerType = PlayerType.AVENTURERO;
         Level nivel = Level.EXPERIMENTADO;
 
         playerRepository.save(new PlayerDocument(id, nombre, playerType, nivel, new HashSet<>()));
 
-        mockMvc.perform(post("/players/update")
+        mockMvc.perform(put("/players/update")
                         .param("idJugador", id)
-                        .param("nombre", nombre)
+                        .param("nombre", "Mario")
                         .param("playerType", playerType.toString())
                         .param("level", nivel.toString())
                         .contentType(MediaType.APPLICATION_JSON))
