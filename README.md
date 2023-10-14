@@ -21,3 +21,5 @@
 
 ## Base de datos mongoDB última version disponible
 - Server localhost : 27017
+
+## Capturas de pantalla y detalles de la estructura de la api consultar Wiki
