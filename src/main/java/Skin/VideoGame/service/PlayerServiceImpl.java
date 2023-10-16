@@ -43,14 +43,14 @@ public class PlayerServiceImpl implements PlayerService {
     }
 
     public void deletePlayer(String idPlayer) throws BadUUIDException {
-    converter.validatePLayerUUID(idPlayer);
+    converter.validatePlayerUUID(idPlayer);
     PlayerDocument playerDocument = findPlayerById(idPlayer);
     log.info(playerDocument + " eliminado correctamente");
     playerRepository.delete(playerDocument);
     }
 
     public PlayerDto updatePLayer(String id, String nombre, PlayerType tipo, Level level) throws BadUUIDException {
-        converter.validatePLayerUUID(id);
+        converter.validatePlayerUUID(id);
         PlayerDocument playerToUpdate = findPlayerById(id);
 
         playerToUpdate.setNombre(nombre);

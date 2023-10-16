@@ -57,7 +57,7 @@ public class PlayerServiceImplTest {
     public void testDeletePlayerSuccess() throws BadUUIDException {
         String validUUID = "550e8400-e29b-41d4-a716-446655440000";
         PlayerDocument player = new PlayerDocument();
-        doNothing().when(converter).validateUUID(validUUID);
+        doNothing().when(converter).validatePlayerUUID(validUUID);
         when(playerRepository.findById(validUUID)).thenReturn(java.util.Optional.of(player));
         playerService.deletePlayer(validUUID);
         verify(playerRepository, Mockito.times(1)).delete(player);
@@ -66,7 +66,7 @@ public class PlayerServiceImplTest {
     @Test(expected = BadUUIDException.class)
     public void testDeletePlayerInvalidUUID() throws BadUUIDException {
         String invalidUUID = "invalid-uuid-format";
-        Mockito.doThrow(new BadUUIDException("Invalid ID format")).when(converter).validateUUID(invalidUUID);
+        Mockito.doThrow(new BadUUIDException("Invalid ID format")).when(converter).validatePlayerUUID(invalidUUID);
         playerService.deletePlayer(invalidUUID);
     }
 
@@ -79,7 +79,7 @@ public class PlayerServiceImplTest {
                 .level(Level.EXPERTO)
                 .mySkins(new HashSet<>())
                 .build();
-        doNothing().when(converter).validateUUID(jugadorExistente.getIdPlayer());
+        doNothing().when(converter).validatePlayerUUID(jugadorExistente.getIdPlayer());
         when(playerRepository.findById(jugadorExistente.getIdPlayer())).thenReturn(Optional.of(jugadorExistente));
         PlayerDocument jugadorConActualizaciones = PlayerDocument.builder()
                 .idPlayer("7d33913d-32fe-470d-beb2-32854c5c4a2a")

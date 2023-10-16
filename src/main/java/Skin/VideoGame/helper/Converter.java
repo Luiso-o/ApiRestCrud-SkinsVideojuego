@@ -49,7 +49,7 @@ public class Converter {
         }
     }
 
-    public void validatePLayerUUID(String id) throws BadUUIDException {
+    public void validatePlayerUUID(String id) throws BadUUIDException {
         boolean validUUID = !StringUtils.isEmpty(id) && UUID_FORM.matcher(id).matches();
         if (!validUUID) {
             log.warn("Invalid ID for the Player format: {}", id);

@@ -53,7 +53,7 @@ public class ConverterTest {
     @Test
     public void testValidUUIDFormat() {
         try {
-            converter.validateUUID("550e8400-e29b-41d4-a716-446655440000");
+            converter.validateSkinUUID("550e8400-e29b-41d4-a716-446655440000");
         } catch (BadUUIDException e) {
             fail("Se esperaba que el UUID fuera válido, pero se lanzó una excepción: " + e.getMessage());
         }
@@ -62,12 +62,12 @@ public class ConverterTest {
     @Test
     public void testInvalidUUIDFormat() {
         try {
-           converter.validateUUID("invalid-uuid-format");
+           converter.validatePlayerUUID("invalid-uuid-format");
             // Si no se lanza una excepción, el test falla
             fail("Se esperaba una excepción BadUUIDException para un formato de UUID no válido.");
         } catch (BadUUIDException e) {
             // Si se lanza una excepción, el test pasa
-            assertEquals("Invalid ID format. Please indicate the correct format.", e.getMessage());
+            assertEquals("Invalid ID for the Player format. Please indicate the correct format.", e.getMessage());
         }
     }
 

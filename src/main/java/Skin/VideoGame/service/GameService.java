@@ -41,7 +41,7 @@ public class GameService {
     }
 
     public SkinDto buyNewSkinForAPLayer(String idPlayer, String idSkin) throws BadUUIDException {
-        converter.validatePLayerUUID(idPlayer);
+        converter.validatePlayerUUID(idPlayer);
         converter.validateSkinUUID(idSkin);
         SkinDocument myNewSkin = skinService.findSkinById(idSkin);
         PlayerDocument player = playerService.findPlayerById(idPlayer);
@@ -57,7 +57,7 @@ public class GameService {
     }
 
     public Set<SkinDto> viewAllThePlayersSkins(String idPLayer) throws BadUUIDException {
-        converter.validatePLayerUUID(idPLayer);
+        converter.validatePlayerUUID(idPLayer);
         PlayerDocument player = playerService.findPlayerById(idPLayer);
         return player.getMySkins().stream()
                 .map(converter::fromSkinDocumentToDto)
@@ -66,7 +66,7 @@ public class GameService {
 
     public void changePurchasedSkinColor(String idPlayer,String idSkin, ColorSkin newColor) throws BadUUIDException, SkinNotFoundException {
      converter.validateSkinUUID(idSkin);
-     converter.validatePLayerUUID(idPlayer);
+     converter.validatePlayerUUID(idPlayer);
 
      PlayerDocument player = playerService.findPlayerById(idPlayer);
 
@@ -86,7 +86,7 @@ public class GameService {
 
     public void removeAPurchasedSkinFromAPlayer(String idPlayer, String idSkin) throws BadUUIDException, SkinNotFoundException {
         converter.validateSkinUUID(idSkin);
-        converter.validatePLayerUUID(idPlayer);
+        converter.validatePlayerUUID(idPlayer);
 
         PlayerDocument player = playerService.findPlayerById(idPlayer);
         Optional<SkinDocument> matchingSkin = player.getMySkins().stream()
