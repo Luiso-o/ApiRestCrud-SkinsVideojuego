@@ -23,4 +23,4 @@ descargar el pluguin de Lombok https://github.com/mplushnikov/lombok-intellij-pl
 ## Base de datos mongoDB última version disponible
 - Server localhost : 27017
 
-## Capturas de pantalla y detalles de la estructura de la api consultar Wiki
+## Capturas de pantalla y detalles de la estructura de la api consultar Wiki https://github.com/Luiso-o/ApiRestCrud-SkinsVideojuego.wiki.git

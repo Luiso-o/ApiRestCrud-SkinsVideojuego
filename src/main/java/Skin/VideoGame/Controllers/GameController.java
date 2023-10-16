@@ -40,10 +40,10 @@ public class GameController {
     })
     @PostMapping(value = "buy")
     public ResponseEntity<Map<String,Object>> buyANewSkinForAPlayer(
-            @RequestParam String idPLayer,
+            @RequestParam String idPlayer,
             @RequestParam String idSkin
     ) throws BadUUIDException {
-        SkinDto myNewSkin = gameService.buyNewSkinForAPLayer(idPLayer,idSkin);
+        SkinDto myNewSkin = gameService.buyNewSkinForAPLayer(idPlayer,idSkin);
         Map<String,Object> response = new HashMap<>();
         response.put("Nueva skin comprada! ", myNewSkin);
         return ResponseEntity.status(HttpStatus.OK).body(response);
@@ -55,9 +55,9 @@ public class GameController {
     })
     @GetMapping(value = "myskins")
     public ResponseEntity<Set<SkinDto>>seeAllThePlayersSkins(
-            @RequestParam String idPLayer
+            @RequestParam String idPlayer
     ) throws BadUUIDException {
-        Set<SkinDto> mySkins = gameService.viewAllThePlayersSkins(idPLayer);
+        Set<SkinDto> mySkins = gameService.viewAllThePlayersSkins(idPlayer);
         return ResponseEntity.status(HttpStatus.OK).body(mySkins);
     }
 
@@ -68,11 +68,11 @@ public class GameController {
     })
     @PutMapping(value = "color")
     public ResponseEntity<String>changeTheColorOfAPlayersSkin(
-            @RequestParam String idPLayer,
+            @RequestParam String idPlayer,
             @RequestParam String idSkin,
             @RequestParam ColorSkin newColor
     ) throws BadUUIDException, SkinNotFoundException {
-        gameService.changePurchasedSkinColor(idPLayer,idSkin,newColor);
+        gameService.changePurchasedSkinColor(idPlayer,idSkin,newColor);
         return ResponseEntity.status(HttpStatus.OK).body("Cambio de color exitoso!!!");
     }
 
@@ -83,10 +83,10 @@ public class GameController {
     })
     @DeleteMapping(value = "delete")
     public ResponseEntity<String>removeAPurchasedSkinFromAPlayer(
-            @RequestParam String idPLayer,
+            @RequestParam String idPlayer,
             @RequestParam String idSkin
     ) throws BadUUIDException, SkinNotFoundException {
-        gameService.removeAPurchasedSkinFromAPlayer(idPLayer, idSkin);
+        gameService.removeAPurchasedSkinFromAPlayer(idPlayer, idSkin);
         return ResponseEntity.status(HttpStatus.OK).body("Skin eliminada exitosamente!!!");
     }
 
