@@ -22,6 +22,9 @@ descargar el pluguin de Lombok https://github.com/mplushnikov/lombok-intellij-pl
 
 ## Base de datos mongoDB última version disponible
 - Server localhost : 27017
+- Si deseas empezar con datos de prueba : 
+[skins_video_game.players.json](src%2Fmain%2Fresources%2Fmongo.init%2Fskins_video_game.players.json)
+[skins_video_game.Skins.json](src%2Fmain%2Fresources%2Fmongo.init%2Fskins_video_game.Skins.json)
 
 ### Capturas de pantalla y detalles de la estructura de la api consultar Wiki.
 
