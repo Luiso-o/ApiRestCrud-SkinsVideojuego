@@ -83,6 +83,22 @@ class SkinControllerTest {
     }
 
     @Test
+    public void testGetASkin() throws Exception {
+        SkinDocument skin = new SkinDocument("1e62d7a8-5a50-4962-93b1-31c8fc041b4c", "Sample Skin", TipoSkin.ALAS, ColorSkin.AZUL, 100.0);
+        skinRepository.save(skin);
+
+        mockMvc.perform(MockMvcRequestBuilders.get("/skins/getOne")
+                        .param("idSkin", "1e62d7a8-5a50-4962-93b1-31c8fc041b4c"))
+                .andExpect(status().isOk())
+                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
+                .andExpect(jsonPath("$.idSkin").value("1e62d7a8-5a50-4962-93b1-31c8fc041b4c"))
+                .andExpect(jsonPath("$.nombre").value("Sample Skin"))
+                .andExpect(jsonPath("$.tipos").value("ALAS"))
+                .andExpect(jsonPath("$.color").value("AZUL"))
+                .andExpect(jsonPath("$.precio").value(100.0));
+    }
+
+    @Test
     public void testGetAllSkinsEndpoint() throws Exception {
         mockMvc.perform(MockMvcRequestBuilders.get("/skins/getAll"))
                 .andExpect(status().isOk())

@@ -16,7 +16,9 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
 import java.util.HashSet;
+import java.util.Optional;
 
+import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
@@ -75,6 +77,21 @@ class PlayerControllerTest {
                         .param("level", nivel.toString())
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk());
+    }
+
+    @Test
+    public void testGetAPlayer() throws Exception {
+        PlayerDocument player = new PlayerDocument("df9eb543-0715-4871-89c2-f247119a0e51", "John", PlayerType.AVENTURERO, Level.EXPERTO, new HashSet<>());
+        playerRepository.save(player);
+
+        mockMvc.perform(get("/players/getOne")
+                        .param("idPlayer", "df9eb543-0715-4871-89c2-f247119a0e51"))
+                .andExpect(status().isOk())
+                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
+                .andExpect(jsonPath("$.idPlayer").value("df9eb543-0715-4871-89c2-f247119a0e51"))
+                .andExpect(jsonPath("$.nombre").value("John"))
+                .andExpect(jsonPath("$.tipo").value("AVENTURERO"))
+                .andExpect(jsonPath("$.level").value("EXPERTO"));
     }
 
     @Test

@@ -73,6 +73,19 @@ public class SkinController {
         return ResponseEntity.status(HttpStatus.OK).body(response);
     }
 
+    @Operation(summary = "Select a skin from the database.")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Successful process."),
+            @ApiResponse(responseCode = "200", description = "Internal error.")
+    })
+    @GetMapping(value = "getOne")
+    public ResponseEntity<SkinDocument>getASkin(
+            @RequestParam String idSkin
+    ){
+        SkinDocument skin = skinService.findSkinById(idSkin);
+        return ResponseEntity.status(HttpStatus.OK).body(skin);
+    }
+
     @Operation(summary = "Select all Skins of the database")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "List of skins"),
