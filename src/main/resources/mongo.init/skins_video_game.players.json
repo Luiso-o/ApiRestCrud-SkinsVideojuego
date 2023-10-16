@@ -1,0 +1,80 @@
+[{
+  "_id": "96a82aad-d6b2-48d2-b17d-3fbb8c67c680",
+  "name": "Martha",
+  "Type": "GUERRERO",
+  "Level": "PRINCIPIANTE",
+  "Skins": [
+    {
+      "_id": "a5c7f86b-ae12-476c-bc67-d5403e920608",
+      "nombre": "Manto de fuego",
+      "tipoSkin": "CAPA",
+      "color": "AMARILLO",
+      "precio": 120
+    }
+  ],
+  "_class": "Skin.VideoGame.documents.PlayerDocument"
+},
+{
+  "_id": "ed4ad805-77a1-439e-9627-70a6fd1a8d8b",
+  "name": "Laura",
+  "Type": "MAGO",
+  "Level": "PRINCIPIANTE",
+  "Skins": [
+    {
+      "_id": "8c7c77e4-d539-4b4a-a440-ee652db3a665",
+      "nombre": "Coraza impenetrable",
+      "tipoSkin": "ARMADURA",
+      "color": "AMARILLO",
+      "precio": 300
+    }
+  ],
+  "_class": "Skin.VideoGame.documents.PlayerDocument"
+},
+{
+  "_id": "0c59c876-5150-4f8f-8f8d-296df52d4968",
+  "name": "Martin",
+  "Type": "MEDICO",
+  "Level": "PRINCIPIANTE",
+  "Skins": [
+    {
+      "_id": "7cb1b662-1ea8-4e2e-acf7-0e036c131d89",
+      "nombre": "Cabeza de Jabalí",
+      "tipoSkin": "CASCO",
+      "color": "NEGRO",
+      "precio": 200
+    }
+  ],
+  "_class": "Skin.VideoGame.documents.PlayerDocument"
+},
+{
+  "_id": "ab88ca83-4af6-4094-bcab-7c9d725701fe",
+  "name": "Jose",
+  "Type": "ESTRATEGA",
+  "Level": "PRINCIPIANTE",
+  "Skins": [
+    {
+      "_id": "71709a11-bc73-4c0d-b66b-c364ea801528",
+      "nombre": "Vuelo del cuervo",
+      "tipoSkin": "ALAS",
+      "color": "NEGRO",
+      "precio": 250
+    }
+  ],
+  "_class": "Skin.VideoGame.documents.PlayerDocument"
+},
+{
+  "_id": "59ef43f6-6f3f-437e-9cb1-349ff133dcf4",
+  "name": "Martina",
+  "Type": "AVENTURERO",
+  "Level": "EXPERIMENTADO",
+  "Skins": [
+    {
+      "_id": "7f23cb4f-9c3c-45f0-b7b8-1e32c04b264e",
+      "nombre": "Full power",
+      "tipoSkin": "AURA_DE_FUEGO",
+      "color": "NARANJA",
+      "precio": 500
+    }
+  ],
+  "_class": "Skin.VideoGame.documents.PlayerDocument"
+}]
