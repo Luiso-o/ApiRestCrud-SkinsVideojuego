@@ -1,10 +1,9 @@
 package Skin.VideoGame.Controllers;
 
 import Skin.VideoGame.Dtos.PlayerDto;
-import Skin.VideoGame.Dtos.SkinDto;
+import Skin.VideoGame.documents.PlayerDocument;
 import Skin.VideoGame.enumeraciones.Level;
 import Skin.VideoGame.enumeraciones.PlayerType;
-import Skin.VideoGame.exceptions.BadUUIDException;
 import Skin.VideoGame.service.PlayerServiceImpl;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
@@ -66,6 +65,19 @@ public class PlayerController {
         Map<String,Object> response = new HashMap<>();
         response.put("Jugador modificado exitosamente", player);
         return ResponseEntity.status(HttpStatus.OK).body(response);
+    }
+
+    @Operation(summary = "Select a player from the database")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Successful process."),
+            @ApiResponse(responseCode = "500", description = "Internal error"),
+    })
+    @GetMapping(value = "getOne")
+    public ResponseEntity<PlayerDocument>getAPlayer(
+            @RequestParam String idPlayer
+    ){
+        PlayerDocument player = playerService.findPlayerById(idPlayer);
+        return ResponseEntity.status(HttpStatus.OK).body(player);
     }
 
     @Operation(summary = "Select all players of the database")
